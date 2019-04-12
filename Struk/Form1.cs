@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Struk
 {
@@ -30,6 +32,19 @@ namespace Struk
             {
                 Text = ("Cetak Struk -- Disconnected --");
             }
+            Directory.CreateDirectory("Grup Kolektif");
+            ///////read txt file to list///////
+            string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
+            listBox1.Items.Clear();
+            DirectoryInfo dinfo = new DirectoryInfo(pat);
+            FileInfo[] smFiles = dinfo.GetFiles("*.txt");
+            foreach (FileInfo fi in smFiles)
+            {
+                listBox1.Items.Add(Path.GetFileNameWithoutExtension(fi.Name));
+                listBox1.Update();
+                listBox1.Refresh();
+            }
+            
         }
         private void Comboitem()
         {
@@ -71,7 +86,7 @@ namespace Struk
             cbtipeM.Items.Add(postp); cbtipeM.Items.Add(pre); cbtipeM.Items.Add(non); cbtipeM.Items.Add(tel); cbtipeM.Items.Add(mul);
             cbtipeM.Items.Add(pdam); cbtipeM.Items.Add(tv); cbtipeM.Items.Add(hp); cbtipeM.Items.Add(bpjs);
             cbtipeM.SelectedIndex = 0;
-            
+
         }
         private void bprosesK_Click(object sender, EventArgs e)
         {
@@ -100,7 +115,7 @@ namespace Struk
                 try
                 {
                     HttpWebRequest req = (HttpWebRequest)WebRequest.Create(urix);
-                    req.AutomaticDecompression = DecompressionMethods.GZip;                    
+                    req.AutomaticDecompression = DecompressionMethods.GZip;
                     req.ContentType = "text/plain";
                     using (HttpWebResponse resp = (HttpWebResponse)req.GetResponse())
                     using (Stream stream = resp.GetResponseStream())
@@ -115,8 +130,7 @@ namespace Struk
                     MessageBox.Show("DATA TIDAK DITEMUKAN");
                 }
             }
-        }      
-      
+        }
         ///////////// mobile /////////////
         private void bprosesM_Click(object sender, EventArgs e)
         {
@@ -157,13 +171,13 @@ namespace Struk
                 }
                 catch (Exception err)
                 {
-                    MessageBox.Show("DATA TIDAK DITEMUKAN");                 
+                    MessageBox.Show("DATA TIDAK DITEMUKAN");
                 }
             }
         }
         private void cbPrinterlist_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string pname = cbPrinterlist .SelectedItem.ToString();
+            string pname = cbPrinterlist.SelectedItem.ToString();
             printer.SetDefaultPrinter(pname);
         }
         private void bresetM_Click(object sender, EventArgs e)
@@ -207,6 +221,58 @@ namespace Struk
         {
             [DllImport("winspool.drv", CharSet = CharSet.Auto, SetLastError = true)]
             public static extern bool SetDefaultPrinter(string printer);
+        }
+        private void bloadK_Click(object sender, EventArgs e)
+        {
+            string path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
+            //string path = Path.GetDirectoryName(Application.ExecutablePath);
+            //string path = AppDomain.CurrentDomain.BaseDirectory;
+            //string path = Application.StartupPath;
+            if (Directory.Exists(path))
+            {
+                openFileDialog1.InitialDirectory = path;
+            }
+            else
+            {
+                openFileDialog1.InitialDirectory = @"C:\";
+            }
+            openFileDialog1.Filter = "Text Files (*.txt)|*.txt";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                tbidpelK.Text = File.ReadAllText(openFileDialog1.FileName);
+            }
+        }
+        private void bloadM_Click(object sender, EventArgs e)
+        {
+            string path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
+            if (Directory.Exists(path))
+            {
+                openFileDialog1.InitialDirectory = path;
+            }
+            else
+            {
+                openFileDialog1.InitialDirectory = @"C:\";
+            }
+            openFileDialog1.Filter = "Text Files (*.txt)|*.txt";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                tbidpelK.Text = File.ReadAllText(openFileDialog1.FileName);
+            }
+
+        }
+        private void bAdd_Click(object sender, EventArgs e)
+        {
+            string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
+            if (Directory.Exists(pat))
+            {
+                File.WriteAllText(Path.Combine(pat, tbnama.Text + ".txt"), rtbgrup.Text);               
+            }                  
+          }
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif\");
+           
+            
         }
     }
 }

@@ -34,6 +34,7 @@
             this.bresetK = new System.Windows.Forms.Button();
             this.bprintK = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.bloadK = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -44,6 +45,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.webviewM = new System.Windows.Forms.WebBrowser();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.bloadM = new System.Windows.Forms.Button();
             this.bresetM = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -53,19 +55,29 @@
             this.bprosesM = new System.Windows.Forms.Button();
             this.cbtipeM = new System.Windows.Forms.ComboBox();
             this.tbidpelM = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbnama = new System.Windows.Forms.TextBox();
+            this.rtbgrup = new System.Windows.Forms.RichTextBox();
+            this.bAdd = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.cbPrinterlist = new System.Windows.Forms.ComboBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(2, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -116,6 +128,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.bloadK);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label11);
@@ -128,6 +141,17 @@
             this.groupBox2.Size = new System.Drawing.Size(891, 41);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
+            // 
+            // bloadK
+            // 
+            this.bloadK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bloadK.Location = new System.Drawing.Point(235, 12);
+            this.bloadK.Name = "bloadK";
+            this.bloadK.Size = new System.Drawing.Size(24, 23);
+            this.bloadK.TabIndex = 10;
+            this.bloadK.Text = "+";
+            this.bloadK.UseVisualStyleBackColor = true;
+            this.bloadK.Click += new System.EventHandler(this.bloadK_Click);
             // 
             // label9
             // 
@@ -211,6 +235,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.bloadM);
             this.groupBox1.Controls.Add(this.bresetM);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
@@ -225,6 +250,17 @@
             this.groupBox1.Size = new System.Drawing.Size(345, 208);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // bloadM
+            // 
+            this.bloadM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bloadM.Location = new System.Drawing.Point(302, 17);
+            this.bloadM.Name = "bloadM";
+            this.bloadM.Size = new System.Drawing.Size(24, 23);
+            this.bloadM.TabIndex = 20;
+            this.bloadM.Text = "+";
+            this.bloadM.UseVisualStyleBackColor = true;
+            this.bloadM.Click += new System.EventHandler(this.bloadM_Click);
             // 
             // bresetM
             // 
@@ -303,8 +339,75 @@
             this.tbidpelM.Location = new System.Drawing.Point(155, 19);
             this.tbidpelM.Multiline = true;
             this.tbidpelM.Name = "tbidpelM";
-            this.tbidpelM.Size = new System.Drawing.Size(171, 20);
+            this.tbidpelM.Size = new System.Drawing.Size(141, 20);
             this.tbidpelM.TabIndex = 11;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.Color.Silver;
+            this.tabPage3.Controls.Add(this.listBox1);
+            this.tabPage3.Controls.Add(this.label2);
+            this.tabPage3.Controls.Add(this.label1);
+            this.tabPage3.Controls.Add(this.tbnama);
+            this.tabPage3.Controls.Add(this.rtbgrup);
+            this.tabPage3.Controls.Add(this.bAdd);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(904, 416);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Grup Kolektif";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(760, 22);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(137, 329);
+            this.listBox1.TabIndex = 6;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(757, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "List Grup";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 338);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Nama Grup";
+            // 
+            // tbnama
+            // 
+            this.tbnama.Location = new System.Drawing.Point(71, 335);
+            this.tbnama.Name = "tbnama";
+            this.tbnama.Size = new System.Drawing.Size(166, 20);
+            this.tbnama.TabIndex = 2;
+            // 
+            // rtbgrup
+            // 
+            this.rtbgrup.Location = new System.Drawing.Point(2, 3);
+            this.rtbgrup.Name = "rtbgrup";
+            this.rtbgrup.Size = new System.Drawing.Size(733, 323);
+            this.rtbgrup.TabIndex = 1;
+            this.rtbgrup.Text = "";
+            // 
+            // bAdd
+            // 
+            this.bAdd.Location = new System.Drawing.Point(243, 333);
+            this.bAdd.Name = "bAdd";
+            this.bAdd.Size = new System.Drawing.Size(75, 23);
+            this.bAdd.TabIndex = 0;
+            this.bAdd.Text = "Add";
+            this.bAdd.UseVisualStyleBackColor = true;
+            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
             // 
             // label8
             // 
@@ -342,6 +445,8 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,6 +481,16 @@
         private System.Windows.Forms.TextBox tbidpelM;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbPrinterlist;
+        private System.Windows.Forms.Button bloadK;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button bAdd;
+        private System.Windows.Forms.RichTextBox rtbgrup;
+        private System.Windows.Forms.Button bloadM;
+        private System.Windows.Forms.TextBox tbnama;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 
