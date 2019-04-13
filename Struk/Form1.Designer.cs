@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cblistgrupK = new System.Windows.Forms.ComboBox();
             this.webviewK = new System.Windows.Forms.WebBrowser();
             this.bresetK = new System.Windows.Forms.Button();
             this.bprintK = new System.Windows.Forms.Button();
@@ -43,6 +45,8 @@
             this.cbitemK = new System.Windows.Forms.ComboBox();
             this.bprosesK = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cblistgrupM = new System.Windows.Forms.ComboBox();
             this.webviewM = new System.Windows.Forms.WebBrowser();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bloadM = new System.Windows.Forms.Button();
@@ -56,10 +60,11 @@
             this.cbtipeM = new System.Windows.Forms.ComboBox();
             this.tbidpelM = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.bresetG = new System.Windows.Forms.Button();
+            this.bdelete = new System.Windows.Forms.Button();
+            this.bupdate = new System.Windows.Forms.Button();
+            this.listgrup = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbnama = new System.Windows.Forms.TextBox();
@@ -90,6 +95,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.LightGray;
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.cblistgrupK);
             this.tabPage1.Controls.Add(this.webviewK);
             this.tabPage1.Controls.Add(this.bresetK);
             this.tabPage1.Controls.Add(this.bprintK);
@@ -100,6 +107,24 @@
             this.tabPage1.Size = new System.Drawing.Size(904, 416);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Standard";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 392);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(132, 13);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Isi IDPEL dari grup kolektif";
+            // 
+            // cblistgrupK
+            // 
+            this.cblistgrupK.FormattingEnabled = true;
+            this.cblistgrupK.Location = new System.Drawing.Point(142, 389);
+            this.cblistgrupK.Name = "cblistgrupK";
+            this.cblistgrupK.Size = new System.Drawing.Size(137, 21);
+            this.cblistgrupK.TabIndex = 17;
+            this.cblistgrupK.SelectedIndexChanged += new System.EventHandler(this.cblistgrupK_SelectedIndexChanged);
             // 
             // webviewK
             // 
@@ -148,7 +173,7 @@
             // bloadK
             // 
             this.bloadK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bloadK.Location = new System.Drawing.Point(235, 12);
+            this.bloadK.Location = new System.Drawing.Point(249, 12);
             this.bloadK.Name = "bloadK";
             this.bloadK.Size = new System.Drawing.Size(24, 23);
             this.bloadK.TabIndex = 10;
@@ -159,7 +184,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(261, 17);
+            this.label9.Location = new System.Drawing.Point(283, 17);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(64, 13);
             this.label9.TabIndex = 9;
@@ -188,14 +213,14 @@
             this.tbidpelK.Location = new System.Drawing.Point(56, 13);
             this.tbidpelK.Name = "tbidpelK";
             this.tbidpelK.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbidpelK.Size = new System.Drawing.Size(175, 20);
+            this.tbidpelK.Size = new System.Drawing.Size(191, 20);
             this.tbidpelK.TabIndex = 0;
             // 
             // dtpK
             // 
-            this.dtpK.Location = new System.Drawing.Point(331, 12);
+            this.dtpK.Location = new System.Drawing.Point(353, 12);
             this.dtpK.Name = "dtpK";
-            this.dtpK.Size = new System.Drawing.Size(175, 20);
+            this.dtpK.Size = new System.Drawing.Size(155, 20);
             this.dtpK.TabIndex = 2;
             // 
             // cbitemK
@@ -219,6 +244,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.LightGray;
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.cblistgrupM);
             this.tabPage2.Controls.Add(this.webviewM);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -227,6 +254,24 @@
             this.tabPage2.Size = new System.Drawing.Size(904, 416);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Mobile Mode";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(625, 32);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(132, 13);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "Isi IDPEL dari grup kolektif";
+            // 
+            // cblistgrupM
+            // 
+            this.cblistgrupM.FormattingEnabled = true;
+            this.cblistgrupM.Location = new System.Drawing.Point(759, 26);
+            this.cblistgrupM.Name = "cblistgrupM";
+            this.cblistgrupM.Size = new System.Drawing.Size(138, 21);
+            this.cblistgrupM.TabIndex = 21;
+            this.cblistgrupM.SelectedIndexChanged += new System.EventHandler(this.cblistgrupM_SelectedIndexChanged);
             // 
             // webviewM
             // 
@@ -248,9 +293,9 @@
             this.groupBox1.Controls.Add(this.bprosesM);
             this.groupBox1.Controls.Add(this.cbtipeM);
             this.groupBox1.Controls.Add(this.tbidpelM);
-            this.groupBox1.Location = new System.Drawing.Point(396, 6);
+            this.groupBox1.Location = new System.Drawing.Point(274, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(345, 208);
+            this.groupBox1.Size = new System.Drawing.Size(345, 257);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -347,10 +392,11 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.Silver;
-            this.tabPage3.Controls.Add(this.button3);
-            this.tabPage3.Controls.Add(this.button2);
-            this.tabPage3.Controls.Add(this.button1);
-            this.tabPage3.Controls.Add(this.listBox1);
+            this.tabPage3.Controls.Add(this.label3);
+            this.tabPage3.Controls.Add(this.bresetG);
+            this.tabPage3.Controls.Add(this.bdelete);
+            this.tabPage3.Controls.Add(this.bupdate);
+            this.tabPage3.Controls.Add(this.listgrup);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.label1);
             this.tabPage3.Controls.Add(this.tbnama);
@@ -362,41 +408,54 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Grup Kolektif";
             // 
-            // button3
+            // label3
             // 
-            this.button3.Location = new System.Drawing.Point(573, 333);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Save";
-            this.button3.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(196, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Data ID Pelanggan, Pisah dengan enter";
             // 
-            // button2
+            // bresetG
             // 
-            this.button2.Location = new System.Drawing.Point(492, 333);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Delete";
-            this.button2.UseVisualStyleBackColor = true;
+            this.bresetG.Location = new System.Drawing.Point(486, 333);
+            this.bresetG.Name = "bresetG";
+            this.bresetG.Size = new System.Drawing.Size(75, 23);
+            this.bresetG.TabIndex = 10;
+            this.bresetG.Text = "Reset";
+            this.bresetG.UseVisualStyleBackColor = true;
+            this.bresetG.Click += new System.EventHandler(this.bresetG_Click);
             // 
-            // button1
+            // bdelete
             // 
-            this.button1.Location = new System.Drawing.Point(411, 332);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Update";
-            this.button1.UseVisualStyleBackColor = true;
+            this.bdelete.Location = new System.Drawing.Point(405, 333);
+            this.bdelete.Name = "bdelete";
+            this.bdelete.Size = new System.Drawing.Size(75, 23);
+            this.bdelete.TabIndex = 8;
+            this.bdelete.Text = "Delete";
+            this.bdelete.UseVisualStyleBackColor = true;
+            this.bdelete.Click += new System.EventHandler(this.bdelete_Click);
             // 
-            // listBox1
+            // bupdate
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(724, 22);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(173, 329);
-            this.listBox1.TabIndex = 6;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.bupdate.Location = new System.Drawing.Point(324, 333);
+            this.bupdate.Name = "bupdate";
+            this.bupdate.Size = new System.Drawing.Size(75, 23);
+            this.bupdate.TabIndex = 7;
+            this.bupdate.Text = "Update";
+            this.bupdate.UseVisualStyleBackColor = true;
+            this.bupdate.Click += new System.EventHandler(this.bupdate_Click);
+            // 
+            // listgrup
+            // 
+            this.listgrup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listgrup.FormattingEnabled = true;
+            this.listgrup.Location = new System.Drawing.Point(724, 25);
+            this.listgrup.Name = "listgrup";
+            this.listgrup.Size = new System.Drawing.Size(177, 327);
+            this.listgrup.TabIndex = 6;
+            this.listgrup.SelectedIndexChanged += new System.EventHandler(this.listgrup_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -425,9 +484,10 @@
             // 
             // rtbgrup
             // 
-            this.rtbgrup.Location = new System.Drawing.Point(2, 3);
+            this.rtbgrup.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbgrup.Location = new System.Drawing.Point(4, 25);
             this.rtbgrup.Name = "rtbgrup";
-            this.rtbgrup.Size = new System.Drawing.Size(713, 323);
+            this.rtbgrup.Size = new System.Drawing.Size(712, 301);
             this.rtbgrup.TabIndex = 1;
             this.rtbgrup.Text = "";
             // 
@@ -444,7 +504,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 453);
+            this.label8.Location = new System.Drawing.Point(668, 455);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(58, 13);
             this.label8.TabIndex = 15;
@@ -453,7 +513,7 @@
             // cbPrinterlist
             // 
             this.cbPrinterlist.FormattingEnabled = true;
-            this.cbPrinterlist.Location = new System.Drawing.Point(77, 448);
+            this.cbPrinterlist.Location = new System.Drawing.Point(732, 450);
             this.cbPrinterlist.Name = "cbPrinterlist";
             this.cbPrinterlist.Size = new System.Drawing.Size(166, 21);
             this.cbPrinterlist.TabIndex = 14;
@@ -472,9 +532,11 @@
             this.Text = "Struk";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -520,12 +582,17 @@
         private System.Windows.Forms.RichTextBox rtbgrup;
         private System.Windows.Forms.Button bloadM;
         private System.Windows.Forms.TextBox tbnama;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listgrup;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button bdelete;
+        private System.Windows.Forms.Button bupdate;
+        private System.Windows.Forms.Button bresetG;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cblistgrupK;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox cblistgrupM;
     }
 }
 

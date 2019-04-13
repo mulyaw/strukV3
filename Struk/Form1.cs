@@ -11,8 +11,6 @@ using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace Struk
 {
@@ -33,21 +31,22 @@ namespace Struk
             {
                 Text = ("Cetak Struk -- Disconnected --");
             }
-            Directory.CreateDirectory("Grup Kolektif");
+            ////crate folder////
+            DirectoryInfo di = Directory.CreateDirectory("Grup Kolektif");
+            di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
             ///////read txt file to list///////
             string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
-            listBox1.Items.Clear();           
+            listgrup.Items.Clear();           
             DirectoryInfo dinfo = new DirectoryInfo(pat);
             FileInfo[] smFiles = dinfo.GetFiles("*.txt");
             foreach (FileInfo fi in smFiles)
             {
                 //listBox1.Items.Add(Path.GetFileNameWithoutExtension(fi.Name));
                 string dt = Path.GetFileNameWithoutExtension(fi.Name);
-                listBox1.Items.Add(dt);
-                              
-            }
-          
-            
+                listgrup.Items.Add(dt);
+                cblistgrupK.Items.Add(dt);
+                cblistgrupM.Items.Add(dt);                              
+            }                     
         }
         private void Comboitem()
         {
@@ -187,11 +186,13 @@ namespace Struk
         {
             webviewM.Stop();
             webviewM.Navigate("about:blank");
+            tbidpelM.Clear();
         }
         private void bresetK_Click(object sender, EventArgs e)
         {
             webviewM.Stop();
             webviewK.Navigate("about:blank");
+            tbidpelK.Clear();
         }
         private void bprintM_Click(object sender, EventArgs e)
         {
@@ -227,7 +228,7 @@ namespace Struk
         }
         private void bloadK_Click(object sender, EventArgs e)
         {
-            string path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
+            string path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath)); //,@"Grup Kolektif");
             //string path = Path.GetDirectoryName(Application.ExecutablePath);
             //string path = AppDomain.CurrentDomain.BaseDirectory;
             //string path = Application.StartupPath;
@@ -250,7 +251,7 @@ namespace Struk
         }
         private void bloadM_Click(object sender, EventArgs e)
         {
-            string path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
+            string path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath));//, @"Grup Kolektif");
             if (Directory.Exists(path))
             {
                 openFileDialog1.InitialDirectory = path;
@@ -271,23 +272,32 @@ namespace Struk
         }
         private void bAdd_Click(object sender, EventArgs e)
         {
+            /*
+            if (tbnama.Text == "")
+            {
+                MessageBox.Show("Silahkan buat nama grup");
+            }
+            else if(rtbgrup.Text == "")
+            {
+                MessageBox.Show("Data IDPel kosong");
+            }*/
             string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
             if (Directory.Exists(pat))
-            {                
+            {
                 File.WriteAllText(Path.Combine(pat, tbnama.Text + ".txt"), rtbgrup.Text);
-                listBox1.Items.Add(tbnama.Text);
+                listgrup.Items.Add(tbnama.Text);                
             }
-            rtbgrup.Clear();tbnama.Clear();
-            MessageBox.Show("DATA BERHASIL DISIMPAN");           
+            rtbgrup.Clear(); tbnama.Clear();
+            MessageBox.Show("DATA BERHASIL DISIMPAN");
         }
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void listgrup_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif\");
                 if (Directory.Exists(pat))
                 {
-                    rtbgrup.Text = File.ReadAllText(Path.Combine(pat, listBox1.Text + ".txt"));
+                    rtbgrup.Text = File.ReadAllText(Path.Combine(pat, listgrup.Text + ".txt"));
                 }
             }
             catch (Exception r)
@@ -295,6 +305,101 @@ namespace Struk
                 MessageBox.Show("DATA TIDAK DITEMUKAN / TELAH DIHAPUS");
             }
 
-        }        
+        }
+
+        private void bupdate_Click(object sender, EventArgs e)
+        {
+            if (listgrup.SelectedItem == null)
+            {
+                MessageBox.Show("Silahkan pilih dari list grup");
+            }
+            string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
+            if (Directory.Exists(pat))
+            {
+                File.WriteAllText(Path.Combine(pat, listgrup.Text + ".txt"), rtbgrup.Text);                              
+            }
+            MessageBox.Show("DATA BERHASIL DIUBAH");
+        }
+
+        private void bresetG_Click(object sender, EventArgs e)
+        {
+            rtbgrup.Clear();tbnama.Clear();
+        }
+
+        private void cblistgrupK_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif\");
+                if (Directory.Exists(pat))
+                {
+                    string dtload = File.ReadAllText(Path.Combine(pat, cblistgrupK.Text + ".txt"));
+                    string replacement = Regex.Replace(dtload, @"\t|\n|\r", ".");
+                    tbidpelK.Text = replacement.ToString();
+                    cblistgrupK.Items.Add(tbnama.Text);
+                }
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show("DATA TIDAK DITEMUKAN / TELAH DIHAPUS");
+            }
+
+        }
+
+        private void cblistgrupM_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif\");
+                if (Directory.Exists(pat))
+                {
+                    string dtload = File.ReadAllText(Path.Combine(pat, cblistgrupM.Text + ".txt"));
+                    string replacement = Regex.Replace(dtload, @"\t|\n|\r", ".");
+                    tbidpelM.Text = replacement.ToString();
+                    cblistgrupM.Items.Add(tbnama.Text);
+                }
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show("DATA TIDAK DITEMUKAN / TELAH DIHAPUS");
+            }
+        }
+
+        private void bdelete_Click(object sender, EventArgs e)
+        {
+            if (listgrup.SelectedItem == null)
+            {
+                MessageBox.Show("Silahkan pilih data dari list grup");
+            }
+            try
+            {
+                string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif\");
+                if (Directory.Exists(pat))
+                {
+                    File.Delete(Path.Combine(pat, listgrup.Text + ".txt"));
+                    rtbgrup.Clear();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Silahkan pilih data dari list grup");
+            }
+        
+            if (listgrup.SelectedIndex != -1)
+            {
+                DialogResult dr = MessageBox.Show("Anda yakin ingin menghapus grup?", "Konfirmasi Hapus Data", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (dr == DialogResult.Yes)
+                {
+                    listgrup.Items.RemoveAt(listgrup.SelectedIndex);
+                }
+                else if (dr == DialogResult.No)
+                {
+                    //
+                }
+                
+            }
+
+        }
     }
 }
