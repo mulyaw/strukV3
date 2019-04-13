@@ -306,7 +306,6 @@ namespace Struk
             }
 
         }
-
         private void bupdate_Click(object sender, EventArgs e)
         {
             if (listgrup.SelectedItem == null)
@@ -320,12 +319,10 @@ namespace Struk
             }
             MessageBox.Show("DATA BERHASIL DIUBAH");
         }
-
         private void bresetG_Click(object sender, EventArgs e)
         {
             rtbgrup.Clear();tbnama.Clear();
         }
-
         private void cblistgrupK_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -345,7 +342,6 @@ namespace Struk
             }
 
         }
-
         private void cblistgrupM_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -364,7 +360,6 @@ namespace Struk
                 MessageBox.Show("DATA TIDAK DITEMUKAN / TELAH DIHAPUS");
             }
         }
-
         private void bdelete_Click(object sender, EventArgs e)
         {
             if (listgrup.SelectedItem == null)
