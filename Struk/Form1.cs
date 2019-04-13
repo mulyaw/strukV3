@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
@@ -35,15 +36,17 @@ namespace Struk
             Directory.CreateDirectory("Grup Kolektif");
             ///////read txt file to list///////
             string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
-            listBox1.Items.Clear();
+            listBox1.Items.Clear();           
             DirectoryInfo dinfo = new DirectoryInfo(pat);
             FileInfo[] smFiles = dinfo.GetFiles("*.txt");
             foreach (FileInfo fi in smFiles)
             {
-                listBox1.Items.Add(Path.GetFileNameWithoutExtension(fi.Name));
-                listBox1.Update();
-                listBox1.Refresh();
+                //listBox1.Items.Add(Path.GetFileNameWithoutExtension(fi.Name));
+                string dt = Path.GetFileNameWithoutExtension(fi.Name);
+                listBox1.Items.Add(dt);
+                              
             }
+          
             
         }
         private void Comboitem()
@@ -239,7 +242,10 @@ namespace Struk
             openFileDialog1.Filter = "Text Files (*.txt)|*.txt";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                tbidpelK.Text = File.ReadAllText(openFileDialog1.FileName);
+                //tbidpelK.Text = File.ReadAllText(openFileDialog1.FileName);
+                string load = File.ReadAllText(openFileDialog1.FileName);
+                string replacement = Regex.Replace(load, @"\t|\n|\r", ".");
+                tbidpelK.Text = replacement.ToString();
             }
         }
         private void bloadM_Click(object sender, EventArgs e)
@@ -255,8 +261,11 @@ namespace Struk
             }
             openFileDialog1.Filter = "Text Files (*.txt)|*.txt";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                tbidpelK.Text = File.ReadAllText(openFileDialog1.FileName);
+            {             
+                //tbidpelM.Text = File.ReadAllText(openFileDialog1.FileName);
+                string load = File.ReadAllText(openFileDialog1.FileName);
+                string replacement = Regex.Replace(load, @"\t|\n|\r", ".");
+                tbidpelM.Text = replacement.ToString();             
             }
 
         }
@@ -264,15 +273,28 @@ namespace Struk
         {
             string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
             if (Directory.Exists(pat))
-            {
-                File.WriteAllText(Path.Combine(pat, tbnama.Text + ".txt"), rtbgrup.Text);               
-            }                  
-          }
+            {                
+                File.WriteAllText(Path.Combine(pat, tbnama.Text + ".txt"), rtbgrup.Text);
+                listBox1.Items.Add(tbnama.Text);
+            }
+            rtbgrup.Clear();tbnama.Clear();
+            MessageBox.Show("DATA BERHASIL DISIMPAN");           
+        }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif\");
-           
-            
-        }
+            try
+            {
+                string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif\");
+                if (Directory.Exists(pat))
+                {
+                    rtbgrup.Text = File.ReadAllText(Path.Combine(pat, listBox1.Text + ".txt"));
+                }
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show("DATA TIDAK DITEMUKAN / TELAH DIHAPUS");
+            }
+
+        }        
     }
 }

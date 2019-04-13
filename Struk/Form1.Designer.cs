@@ -56,6 +56,9 @@
             this.cbtipeM = new System.Windows.Forms.ComboBox();
             this.tbidpelM = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -254,7 +257,7 @@
             // bloadM
             // 
             this.bloadM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bloadM.Location = new System.Drawing.Point(302, 17);
+            this.bloadM.Location = new System.Drawing.Point(302, 18);
             this.bloadM.Name = "bloadM";
             this.bloadM.Size = new System.Drawing.Size(24, 23);
             this.bloadM.TabIndex = 20;
@@ -337,7 +340,6 @@
             // tbidpelM
             // 
             this.tbidpelM.Location = new System.Drawing.Point(155, 19);
-            this.tbidpelM.Multiline = true;
             this.tbidpelM.Name = "tbidpelM";
             this.tbidpelM.Size = new System.Drawing.Size(141, 20);
             this.tbidpelM.TabIndex = 11;
@@ -345,6 +347,9 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.Silver;
+            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Controls.Add(this.listBox1);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.label1);
@@ -357,19 +362,46 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Grup Kolektif";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(573, 333);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Save";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(492, 333);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Delete";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(411, 332);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Update";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(760, 22);
+            this.listBox1.Location = new System.Drawing.Point(724, 22);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(137, 329);
+            this.listBox1.Size = new System.Drawing.Size(173, 329);
             this.listBox1.TabIndex = 6;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(757, 6);
+            this.label2.Location = new System.Drawing.Point(721, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 5;
@@ -395,7 +427,7 @@
             // 
             this.rtbgrup.Location = new System.Drawing.Point(2, 3);
             this.rtbgrup.Name = "rtbgrup";
-            this.rtbgrup.Size = new System.Drawing.Size(733, 323);
+            this.rtbgrup.Size = new System.Drawing.Size(713, 323);
             this.rtbgrup.TabIndex = 1;
             this.rtbgrup.Text = "";
             // 
@@ -491,6 +523,9 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
