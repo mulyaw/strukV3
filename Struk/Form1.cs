@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
@@ -21,7 +15,7 @@ namespace Struk
             InitializeComponent();
             Comboitem();
             PrinterList();
-            WebRequest request = WebRequest.Create("http://192.168.15.205:8080/safana");
+            WebRequest request = WebRequest.Create("http://192.168.15.59/safana");
             try
             {
                 request.GetResponse();
@@ -31,7 +25,7 @@ namespace Struk
             {
                 Text = ("Cetak Struk -- Disconnected --");
             }
-            ////crate folder////
+            ////create folder////
             DirectoryInfo di = Directory.CreateDirectory("Grup Kolektif");
             di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
             ///////read txt file to list///////
@@ -114,7 +108,7 @@ namespace Struk
             }
             catch (Exception err)
             {
-                //MessageBox.Show("DATA TIDAK DITEMUKAN\nMencoba alihkan ke server 2");
+      
                 string urix = @"http://192.168.15.59/safana/struk/strukkolektiflebar?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
                 try
                 {
@@ -129,13 +123,13 @@ namespace Struk
                         webviewK.DocumentText = result;
                     }
                 }
-                catch (Exception er)
+                catch (Exception)
                 {
                     MessageBox.Show("DATA TIDAK DITEMUKAN", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
-        ///////////// mobile /////////////
+
         private void bprosesM_Click(object sender, EventArgs e)
         {
             string result = string.Empty;
@@ -157,9 +151,9 @@ namespace Struk
                     webviewM.DocumentText = result;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
-                //MessageBox.Show("DATA TIDAK DITEMUKAN\nMencoba alihkan ke server 2");
+                
                 string urix = @"http://192.168.15.59/safana/struk/strukkolektif?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
                 try
                 {
@@ -174,12 +168,13 @@ namespace Struk
                         webviewM.DocumentText = result;
                     }
                 }
-                catch (Exception err)
+                catch (Exception)
                 {
                     MessageBox.Show("DATA TIDAK DITEMUKAN", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
+
         private void cbPrinterlist_SelectedIndexChanged(object sender, EventArgs e)
         {
             string pname = cbPrinterlist.SelectedItem.ToString();
@@ -302,7 +297,7 @@ namespace Struk
                     rtbgrup.Text = File.ReadAllText(Path.Combine(pat, listgrup.Text + ".txt"));
                 }
             }
-            catch (Exception r)
+            catch (Exception)
             {
                 MessageBox.Show("DATA TIDAK DITEMUKAN / TELAH DIHAPUS");
             }
@@ -330,7 +325,7 @@ namespace Struk
                 }
                 else if (dr == DialogResult.No)
                 {
-                    //return;
+                    //
                 }
             }                          
         }
@@ -347,8 +342,7 @@ namespace Struk
                 {
                     string dtload = File.ReadAllText(Path.Combine(pat, cblistgrupK.Text + ".txt"));
                     string replacement = Regex.Replace(dtload, @"\t|\n|\r", ".");
-                    tbidpelK.Text = replacement.ToString();
-                    //cblistgrupK.Items.Add(tbnama.Text);
+                    tbidpelK.Text = replacement.ToString();               
                 }
             }
             catch (Exception r)
@@ -366,8 +360,7 @@ namespace Struk
                 {
                     string dtload = File.ReadAllText(Path.Combine(pat, cblistgrupM.Text + ".txt"));
                     string replacement = Regex.Replace(dtload, @"\t|\n|\r", ".");
-                    tbidpelM.Text = replacement.ToString();
-                    //cblistgrupM.Items.Add(tbnama.Text);
+                    tbidpelM.Text = replacement.ToString();                  
                 }
             }
             catch (Exception r)
@@ -400,7 +393,7 @@ namespace Struk
                 }
                 else if (dr == DialogResult.No)
                 {
-                    //return;
+                    //
                 }
                 
             }
