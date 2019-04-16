@@ -46,7 +46,8 @@ namespace Struk
                 listgrup.Items.Add(dt);
                 cblistgrupK.Items.Add(dt);
                 cblistgrupM.Items.Add(dt);                              
-            }                     
+            }
+           
         }
         private void Comboitem()
         {
@@ -96,7 +97,8 @@ namespace Struk
             string tgl = dtpK.Value.Date.ToString("yyyy-MM-dd");
             string idpel = tbidpelK.Text;
             string tipe = ((cbitemK.SelectedItem as ComboboxItem).Value.ToString());
-            string uri = @"http://192.168.15.205:8080/safana/struk/struklebar?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
+            string uri = @"http://192.168.15.59/safana/struk/struklebar?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
+            //http://192.168.15.205:8080
             try
             {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
@@ -112,8 +114,8 @@ namespace Struk
             }
             catch (Exception err)
             {
-                MessageBox.Show("DATA TIDAK DITEMUKAN\nMencoba alihkan ke server 2");
-                string urix = @"http://192.168.15.205:8080/safana/struk/strukkolektiflebar?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
+                //MessageBox.Show("DATA TIDAK DITEMUKAN\nMencoba alihkan ke server 2");
+                string urix = @"http://192.168.15.59/safana/struk/strukkolektiflebar?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
                 try
                 {
                     HttpWebRequest req = (HttpWebRequest)WebRequest.Create(urix);
@@ -129,7 +131,7 @@ namespace Struk
                 }
                 catch (Exception er)
                 {
-                    MessageBox.Show("DATA TIDAK DITEMUKAN");
+                    MessageBox.Show("DATA TIDAK DITEMUKAN", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -140,7 +142,8 @@ namespace Struk
             string tgl = dtpM.Value.Date.ToString("yyyy-MM-dd");
             string idpel = tbidpelM.Text;
             string tipe = ((cbtipeM.SelectedItem as ComboboxItem).Value.ToString());
-            string uri = @"http://192.168.15.205:8080/safana/struk/strukidpel?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
+            string uri = @"http://192.168.15.59/safana/struk/strukidpel?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
+            //http://192.168.15.205:8080
             try
             {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
@@ -156,8 +159,8 @@ namespace Struk
             }
             catch (Exception er)
             {
-                MessageBox.Show("DATA TIDAK DITEMUKAN\nMencoba alihkan ke server 2");
-                string urix = @"http://192.168.15.205:8080/safana/struk/strukkolektif?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
+                //MessageBox.Show("DATA TIDAK DITEMUKAN\nMencoba alihkan ke server 2");
+                string urix = @"http://192.168.15.59/safana/struk/strukkolektif?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
                 try
                 {
                     HttpWebRequest req = (HttpWebRequest)WebRequest.Create(urix);
@@ -173,7 +176,7 @@ namespace Struk
                 }
                 catch (Exception err)
                 {
-                    MessageBox.Show("DATA TIDAK DITEMUKAN");
+                    MessageBox.Show("DATA TIDAK DITEMUKAN", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -196,12 +199,10 @@ namespace Struk
         }
         private void bprintM_Click(object sender, EventArgs e)
         {
-            //webviewM.ShowPrintDialog();
             webviewM.ShowPrintPreviewDialog();
         }
         private void bprintK_Click(object sender, EventArgs e)
         {
-            //webviewK.ShowPrintDialog();
             webviewK.ShowPrintPreviewDialog();
         }
         private void PrinterList()
@@ -272,23 +273,24 @@ namespace Struk
         }
         private void bAdd_Click(object sender, EventArgs e)
         {
-            /*
-            if (tbnama.Text == "")
+            if (tbnama.Text == "" || rtbgrup.Text == "")
             {
-                MessageBox.Show("Silahkan buat nama grup");
+                MessageBox.Show("Nama grup atau idpel kosong", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else if(rtbgrup.Text == "")
+            else
             {
-                MessageBox.Show("Data IDPel kosong");
-            }*/
-            string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
-            if (Directory.Exists(pat))
-            {
-                File.WriteAllText(Path.Combine(pat, tbnama.Text + ".txt"), rtbgrup.Text);
-                listgrup.Items.Add(tbnama.Text);                
+                string path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
+                if (Directory.Exists(path))
+                {
+                    File.WriteAllText(Path.Combine(path, tbnama.Text + ".txt"), rtbgrup.Text);
+                    listgrup.Items.Add(tbnama.Text);
+                    cblistgrupK.Items.Add(tbnama.Text.ToString());
+                    cblistgrupM.Items.Add(tbnama.Text.ToString());
+                }
+                rtbgrup.Clear(); tbnama.Clear();
+                MessageBox.Show("DATA BERHASIL DISIMPAN","Informasi",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
-            rtbgrup.Clear(); tbnama.Clear();
-            MessageBox.Show("DATA BERHASIL DISIMPAN");
+            
         }
         private void listgrup_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -310,14 +312,27 @@ namespace Struk
         {
             if (listgrup.SelectedItem == null)
             {
-                MessageBox.Show("Silahkan pilih dari list grup");
+                MessageBox.Show("Silahkan pilih dari list grup", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
-            if (Directory.Exists(pat))
+            
+            if (listgrup.SelectedIndex != -1)
             {
-                File.WriteAllText(Path.Combine(pat, listgrup.Text + ".txt"), rtbgrup.Text);                              
-            }
-            MessageBox.Show("DATA BERHASIL DIUBAH");
+                DialogResult dr = MessageBox.Show("Anda yakin ingin mengubah data?", "Konfirmasi Perubahan Data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dr == DialogResult.Yes)
+                {
+                    string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
+                    if (Directory.Exists(pat))
+                    {
+                        File.WriteAllText(Path.Combine(pat, listgrup.Text + ".txt"), rtbgrup.Text);
+                    }
+                    MessageBox.Show("DATA BERHASIL DIUBAH", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (dr == DialogResult.No)
+                {
+                    //return;
+                }
+            }                          
         }
         private void bresetG_Click(object sender, EventArgs e)
         {
@@ -333,7 +348,7 @@ namespace Struk
                     string dtload = File.ReadAllText(Path.Combine(pat, cblistgrupK.Text + ".txt"));
                     string replacement = Regex.Replace(dtload, @"\t|\n|\r", ".");
                     tbidpelK.Text = replacement.ToString();
-                    cblistgrupK.Items.Add(tbnama.Text);
+                    //cblistgrupK.Items.Add(tbnama.Text);
                 }
             }
             catch (Exception r)
@@ -352,7 +367,7 @@ namespace Struk
                     string dtload = File.ReadAllText(Path.Combine(pat, cblistgrupM.Text + ".txt"));
                     string replacement = Regex.Replace(dtload, @"\t|\n|\r", ".");
                     tbidpelM.Text = replacement.ToString();
-                    cblistgrupM.Items.Add(tbnama.Text);
+                    //cblistgrupM.Items.Add(tbnama.Text);
                 }
             }
             catch (Exception r)
@@ -364,33 +379,28 @@ namespace Struk
         {
             if (listgrup.SelectedItem == null)
             {
-                MessageBox.Show("Silahkan pilih data dari list grup");
+                MessageBox.Show("Silahkan pilih dari list grup", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            try
-            {
-                string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif\");
-                if (Directory.Exists(pat))
-                {
-                    File.Delete(Path.Combine(pat, listgrup.Text + ".txt"));
-                    rtbgrup.Clear();
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Silahkan pilih data dari list grup");
-            }
-        
+            
+                   
             if (listgrup.SelectedIndex != -1)
             {
-                DialogResult dr = MessageBox.Show("Anda yakin ingin menghapus grup?", "Konfirmasi Hapus Data", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                DialogResult dr = MessageBox.Show("Anda yakin ingin menghapus grup?", "Konfirmasi Hapus Data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dr == DialogResult.Yes)
                 {
+                    string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif\");
+                    if (Directory.Exists(pat))
+                    {
+                        File.Delete(Path.Combine(pat, listgrup.Text + ".txt"));
+                        rtbgrup.Clear();
+                    }
                     listgrup.Items.RemoveAt(listgrup.SelectedIndex);
+     
                 }
                 else if (dr == DialogResult.No)
                 {
-                    //
+                    //return;
                 }
                 
             }
