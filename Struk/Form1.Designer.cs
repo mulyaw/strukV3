@@ -45,10 +45,10 @@
             this.cbitemK = new System.Windows.Forms.ComboBox();
             this.bprosesK = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cblistgrupM = new System.Windows.Forms.ComboBox();
             this.webviewM = new System.Windows.Forms.WebBrowser();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cblistgrupM = new System.Windows.Forms.ComboBox();
             this.bloadM = new System.Windows.Forms.Button();
             this.bresetM = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -253,24 +253,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Mobile Mode";
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(15, 59);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(147, 13);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "Pilih IDPEL dari grup kolektif :";
-            // 
-            // cblistgrupM
-            // 
-            this.cblistgrupM.FormattingEnabled = true;
-            this.cblistgrupM.Location = new System.Drawing.Point(162, 56);
-            this.cblistgrupM.Name = "cblistgrupM";
-            this.cblistgrupM.Size = new System.Drawing.Size(164, 21);
-            this.cblistgrupM.TabIndex = 21;
-            this.cblistgrupM.SelectedIndexChanged += new System.EventHandler(this.cblistgrupM_SelectedIndexChanged);
-            // 
             // webviewM
             // 
             this.webviewM.Location = new System.Drawing.Point(6, 6);
@@ -293,16 +275,34 @@
             this.groupBox1.Controls.Add(this.bprosesM);
             this.groupBox1.Controls.Add(this.cbtipeM);
             this.groupBox1.Controls.Add(this.tbidpelM);
-            this.groupBox1.Location = new System.Drawing.Point(274, 6);
+            this.groupBox1.Location = new System.Drawing.Point(274, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(352, 242);
+            this.groupBox1.Size = new System.Drawing.Size(389, 238);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(15, 57);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(173, 13);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "IDPEL dari grup kolektif (opsional) :";
+            // 
+            // cblistgrupM
+            // 
+            this.cblistgrupM.FormattingEnabled = true;
+            this.cblistgrupM.Location = new System.Drawing.Point(196, 54);
+            this.cblistgrupM.Name = "cblistgrupM";
+            this.cblistgrupM.Size = new System.Drawing.Size(164, 21);
+            this.cblistgrupM.TabIndex = 21;
+            this.cblistgrupM.SelectedIndexChanged += new System.EventHandler(this.cblistgrupM_SelectedIndexChanged);
             // 
             // bloadM
             // 
             this.bloadM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bloadM.Location = new System.Drawing.Point(302, 21);
+            this.bloadM.Location = new System.Drawing.Point(336, 19);
             this.bloadM.Name = "bloadM";
             this.bloadM.Size = new System.Drawing.Size(24, 23);
             this.bloadM.TabIndex = 20;
@@ -312,7 +312,7 @@
             // 
             // bresetM
             // 
-            this.bresetM.Location = new System.Drawing.Point(162, 192);
+            this.bresetM.Location = new System.Drawing.Point(196, 190);
             this.bresetM.Name = "bresetM";
             this.bresetM.Size = new System.Drawing.Size(164, 23);
             this.bresetM.TabIndex = 19;
@@ -349,14 +349,14 @@
             // 
             // dtpM
             // 
-            this.dtpM.Location = new System.Drawing.Point(162, 89);
+            this.dtpM.Location = new System.Drawing.Point(196, 87);
             this.dtpM.Name = "dtpM";
             this.dtpM.Size = new System.Drawing.Size(164, 20);
             this.dtpM.TabIndex = 15;
             // 
             // bprintM
             // 
-            this.bprintM.Location = new System.Drawing.Point(251, 163);
+            this.bprintM.Location = new System.Drawing.Point(285, 161);
             this.bprintM.Name = "bprintM";
             this.bprintM.Size = new System.Drawing.Size(75, 23);
             this.bprintM.TabIndex = 14;
@@ -366,7 +366,7 @@
             // 
             // bprosesM
             // 
-            this.bprosesM.Location = new System.Drawing.Point(162, 163);
+            this.bprosesM.Location = new System.Drawing.Point(196, 161);
             this.bprosesM.Name = "bprosesM";
             this.bprosesM.Size = new System.Drawing.Size(75, 23);
             this.bprosesM.TabIndex = 13;
@@ -377,14 +377,14 @@
             // cbtipeM
             // 
             this.cbtipeM.FormattingEnabled = true;
-            this.cbtipeM.Location = new System.Drawing.Point(162, 123);
+            this.cbtipeM.Location = new System.Drawing.Point(196, 121);
             this.cbtipeM.Name = "cbtipeM";
             this.cbtipeM.Size = new System.Drawing.Size(164, 21);
             this.cbtipeM.TabIndex = 12;
             // 
             // tbidpelM
             // 
-            this.tbidpelM.Location = new System.Drawing.Point(162, 23);
+            this.tbidpelM.Location = new System.Drawing.Point(196, 21);
             this.tbidpelM.Name = "tbidpelM";
             this.tbidpelM.Size = new System.Drawing.Size(134, 20);
             this.tbidpelM.TabIndex = 11;
@@ -527,7 +527,8 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cbPrinterlist);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Struk";
             this.tabControl1.ResumeLayout(false);

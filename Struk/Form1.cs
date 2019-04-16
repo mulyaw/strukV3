@@ -268,22 +268,29 @@ namespace Struk
         }
         private void bAdd_Click(object sender, EventArgs e)
         {
-            if (tbnama.Text == "" || rtbgrup.Text == "")
+            try
             {
-                MessageBox.Show("Nama grup atau idpel kosong", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                string path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
-                if (Directory.Exists(path))
+                if (tbnama.Text == "" || rtbgrup.Text == "")
                 {
-                    File.WriteAllText(Path.Combine(path, tbnama.Text + ".txt"), rtbgrup.Text);
-                    listgrup.Items.Add(tbnama.Text);
-                    cblistgrupK.Items.Add(tbnama.Text.ToString());
-                    cblistgrupM.Items.Add(tbnama.Text.ToString());
+                    MessageBox.Show("Nama grup atau idpel kosong", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                rtbgrup.Clear(); tbnama.Clear();
-                MessageBox.Show("DATA BERHASIL DISIMPAN","Informasi",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                else
+                {
+                    string path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
+                    if (Directory.Exists(path))
+                    {
+                        File.WriteAllText(Path.Combine(path, tbnama.Text + ".txt"), rtbgrup.Text);
+                        listgrup.Items.Add(tbnama.Text);
+                        cblistgrupK.Items.Add(tbnama.Text.ToString());
+                        cblistgrupM.Items.Add(tbnama.Text.ToString());
+                    }
+                    rtbgrup.Clear(); tbnama.Clear();
+                    MessageBox.Show("DATA BERHASIL DISIMPAN", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("NAMA GRUP TIDAK BOLEH MENGGUNAKAN KARAKTER\nSELAIN ANGKA/HURUF DAN SPASI", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             
         }
