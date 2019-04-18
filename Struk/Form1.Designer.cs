@@ -173,9 +173,9 @@
             // bloadK
             // 
             this.bloadK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bloadK.Location = new System.Drawing.Point(249, 12);
+            this.bloadK.Location = new System.Drawing.Point(249, 13);
             this.bloadK.Name = "bloadK";
-            this.bloadK.Size = new System.Drawing.Size(24, 23);
+            this.bloadK.Size = new System.Drawing.Size(24, 21);
             this.bloadK.TabIndex = 10;
             this.bloadK.Text = "+";
             this.bloadK.UseVisualStyleBackColor = true;
@@ -213,7 +213,7 @@
             this.tbidpelK.Location = new System.Drawing.Point(56, 13);
             this.tbidpelK.Name = "tbidpelK";
             this.tbidpelK.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbidpelK.Size = new System.Drawing.Size(191, 20);
+            this.tbidpelK.Size = new System.Drawing.Size(187, 20);
             this.tbidpelK.TabIndex = 0;
             // 
             // dtpK
@@ -302,9 +302,9 @@
             // bloadM
             // 
             this.bloadM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bloadM.Location = new System.Drawing.Point(336, 19);
+            this.bloadM.Location = new System.Drawing.Point(336, 21);
             this.bloadM.Name = "bloadM";
-            this.bloadM.Size = new System.Drawing.Size(24, 23);
+            this.bloadM.Size = new System.Drawing.Size(24, 21);
             this.bloadM.TabIndex = 20;
             this.bloadM.Text = "+";
             this.bloadM.UseVisualStyleBackColor = true;

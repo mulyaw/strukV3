@@ -15,14 +15,15 @@ namespace Struk
             InitializeComponent();
             Comboitem();
             PrinterList();
-            WebRequest request = WebRequest.Create("http://192.168.15.59/safana");
+            WebRequest request = WebRequest.Create("http://192.168.15.59:80/safana");
             try
             {
                 request.GetResponse();
                 Text = ("Cetak Struk -- Connected --                                                   " + DateTime.Now.ToString("                                  dddd, d MMMM yyyy"));
             }
-            catch
+            catch(Exception)
             {
+                MessageBox.Show("Internet tidak tersedia\nSilahkan periksa koneksi internet anda", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Text = ("Cetak Struk -- Disconnected --");
             }
             ////create folder////
@@ -91,7 +92,7 @@ namespace Struk
             string tgl = dtpK.Value.Date.ToString("yyyy-MM-dd");
             string idpel = tbidpelK.Text;
             string tipe = ((cbitemK.SelectedItem as ComboboxItem).Value.ToString());
-            string uri = @"http://192.168.15.59/safana/struk/struklebar?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
+            string uri = @"http://192.168.15.59:80/safana/struk/struklebar?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
             //http://192.168.15.205:8080
             try
             {
@@ -106,7 +107,7 @@ namespace Struk
                     webviewK.DocumentText = result;
                 }
             }
-            catch (Exception err)
+            catch (Exception)
             {
       
                 string urix = @"http://192.168.15.59/safana/struk/strukkolektiflebar?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
@@ -129,14 +130,13 @@ namespace Struk
                 }
             }
         }
-
         private void bprosesM_Click(object sender, EventArgs e)
         {
             string result = string.Empty;
             string tgl = dtpM.Value.Date.ToString("yyyy-MM-dd");
             string idpel = tbidpelM.Text;
             string tipe = ((cbtipeM.SelectedItem as ComboboxItem).Value.ToString());
-            string uri = @"http://192.168.15.59/safana/struk/strukidpel?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
+            string uri = @"http://192.168.15.59:80/safana/struk/strukidpel?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
             //http://192.168.15.205:8080
             try
             {
@@ -165,7 +165,7 @@ namespace Struk
                     using (StreamReader read = new StreamReader(stream, Encoding.UTF8))
                     {
                         result = read.ReadToEnd();
-                        webviewM.DocumentText = result;
+                        webviewM.DocumentText = result;                       
                     }
                 }
                 catch (Exception)
@@ -174,7 +174,6 @@ namespace Struk
                 }
             }
         }
-
         private void cbPrinterlist_SelectedIndexChanged(object sender, EventArgs e)
         {
             string pname = cbPrinterlist.SelectedItem.ToString();
@@ -352,7 +351,7 @@ namespace Struk
                     tbidpelK.Text = replacement.ToString();               
                 }
             }
-            catch (Exception r)
+            catch (Exception)
             {
                 MessageBox.Show("DATA TIDAK DITEMUKAN / TELAH DIHAPUS");
             }
@@ -370,7 +369,7 @@ namespace Struk
                     tbidpelM.Text = replacement.ToString();                  
                 }
             }
-            catch (Exception r)
+            catch (Exception)
             {
                 MessageBox.Show("DATA TIDAK DITEMUKAN / TELAH DIHAPUS");
             }
