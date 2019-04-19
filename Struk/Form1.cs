@@ -15,13 +15,13 @@ namespace Struk
             InitializeComponent();
             Comboitem();
             PrinterList();
-            WebRequest request = WebRequest.Create("http://192.168.15.59:80/safana");
+            WebRequest request = WebRequest.Create("http://localhost/safana");//("http://192.168.15.59:80/safana");
             try
             {
                 request.GetResponse();
                 Text = ("Cetak Struk -- Connected --                                                   " + DateTime.Now.ToString("                                  dddd, d MMMM yyyy"));
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Internet tidak tersedia\nSilahkan periksa koneksi internet anda", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Text = ("Cetak Struk -- Disconnected --");
@@ -31,7 +31,7 @@ namespace Struk
             di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
             ///////read txt file to list///////
             string pat = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Grup Kolektif");
-            listgrup.Items.Clear();           
+            listgrup.Items.Clear();
             DirectoryInfo dinfo = new DirectoryInfo(pat);
             FileInfo[] smFiles = dinfo.GetFiles("*.txt");
             foreach (FileInfo fi in smFiles)
@@ -40,9 +40,13 @@ namespace Struk
                 string dt = Path.GetFileNameWithoutExtension(fi.Name);
                 listgrup.Items.Add(dt);
                 cblistgrupK.Items.Add(dt);
-                cblistgrupM.Items.Add(dt);                              
+                cblistgrupM.Items.Add(dt);
             }
-           
+            toolTip1.SetToolTip(bloadK, "Import dari notepad");
+            toolTip1.SetToolTip(bloadM, "Import dari notepad");
+            toolTip1.SetToolTip(tbidpelK, "Untuk cetak beberapa IDPEL, Silahkan pisah dengan TITIK");
+            toolTip1.SetToolTip(tbidpelM, "Untuk cetak beberapa IDPEL, Silahkan pisah dengan TITIK");
+            toolTip1.IsBalloon = true;
         }
         private void Comboitem()
         {
@@ -92,8 +96,7 @@ namespace Struk
             string tgl = dtpK.Value.Date.ToString("yyyy-MM-dd");
             string idpel = tbidpelK.Text;
             string tipe = ((cbitemK.SelectedItem as ComboboxItem).Value.ToString());
-            string uri = @"http://192.168.15.59:80/safana/struk/struklebar?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
-            //http://192.168.15.205:8080
+            string uri = @"http://localhost/safana/struk/struklebar?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
             try
             {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
@@ -109,8 +112,8 @@ namespace Struk
             }
             catch (Exception)
             {
-      
-                string urix = @"http://192.168.15.59/safana/struk/strukkolektiflebar?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
+
+                string urix = @"http://localhost/safana/struk/strukkolektiflebar?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
                 try
                 {
                     HttpWebRequest req = (HttpWebRequest)WebRequest.Create(urix);
@@ -136,8 +139,7 @@ namespace Struk
             string tgl = dtpM.Value.Date.ToString("yyyy-MM-dd");
             string idpel = tbidpelM.Text;
             string tipe = ((cbtipeM.SelectedItem as ComboboxItem).Value.ToString());
-            string uri = @"http://192.168.15.59:80/safana/struk/strukidpel?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
-            //http://192.168.15.205:8080
+            string uri = @"http://localhost/safana/struk/strukidpel?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";           
             try
             {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
@@ -153,8 +155,8 @@ namespace Struk
             }
             catch (Exception)
             {
-                
-                string urix = @"http://192.168.15.59/safana/struk/strukkolektif?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
+
+                string urix = @"http://localhost/safana/struk/strukkolektif?idpel=" + idpel + "&tgl_bayar=" + tgl + "&tipe=" + tipe + "";
                 try
                 {
                     HttpWebRequest req = (HttpWebRequest)WebRequest.Create(urix);
@@ -165,7 +167,7 @@ namespace Struk
                     using (StreamReader read = new StreamReader(stream, Encoding.UTF8))
                     {
                         result = read.ReadToEnd();
-                        webviewM.DocumentText = result;                       
+                        webviewM.DocumentText = result;
                     }
                 }
                 catch (Exception)
@@ -257,11 +259,11 @@ namespace Struk
             }
             openFileDialog1.Filter = "Text Files (*.txt)|*.txt";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {             
+            {
                 //tbidpelM.Text = File.ReadAllText(openFileDialog1.FileName);
                 string load = File.ReadAllText(openFileDialog1.FileName);
                 string replacement = Regex.Replace(load, @"\t|\n|\r", ".");
-                tbidpelM.Text = replacement.ToString();             
+                tbidpelM.Text = replacement.ToString();
             }
 
         }
@@ -287,11 +289,11 @@ namespace Struk
                     MessageBox.Show("DATA BERHASIL DISIMPAN", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("NAMA GRUP TIDAK BOLEH MENGGUNAKAN KARAKTER\nSELAIN ANGKA/HURUF DAN SPASI", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
         }
         private void listgrup_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -315,7 +317,7 @@ namespace Struk
             {
                 MessageBox.Show("Silahkan pilih dari list grup", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
             if (listgrup.SelectedIndex != -1)
             {
                 DialogResult dr = MessageBox.Show("Anda yakin ingin mengubah data?", "Konfirmasi Perubahan Data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -333,11 +335,11 @@ namespace Struk
                 {
                     //
                 }
-            }                          
+            }
         }
         private void bresetG_Click(object sender, EventArgs e)
         {
-            rtbgrup.Clear();tbnama.Clear();
+            rtbgrup.Clear(); tbnama.Clear();
         }
         private void cblistgrupK_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -348,7 +350,7 @@ namespace Struk
                 {
                     string dtload = File.ReadAllText(Path.Combine(pat, cblistgrupK.Text + ".txt"));
                     string replacement = Regex.Replace(dtload, @"\t|\n|\r", ".");
-                    tbidpelK.Text = replacement.ToString();               
+                    tbidpelK.Text = replacement.ToString();
                 }
             }
             catch (Exception)
@@ -366,7 +368,7 @@ namespace Struk
                 {
                     string dtload = File.ReadAllText(Path.Combine(pat, cblistgrupM.Text + ".txt"));
                     string replacement = Regex.Replace(dtload, @"\t|\n|\r", ".");
-                    tbidpelM.Text = replacement.ToString();                  
+                    tbidpelM.Text = replacement.ToString();
                 }
             }
             catch (Exception)
@@ -380,8 +382,8 @@ namespace Struk
             {
                 MessageBox.Show("Silahkan pilih dari list grup", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
-                   
+
+
             if (listgrup.SelectedIndex != -1)
             {
                 DialogResult dr = MessageBox.Show("Anda yakin ingin menghapus grup?", "Konfirmasi Hapus Data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -395,13 +397,13 @@ namespace Struk
                         rtbgrup.Clear();
                     }
                     listgrup.Items.RemoveAt(listgrup.SelectedIndex);
-     
+
                 }
                 else if (dr == DialogResult.No)
                 {
                     //
                 }
-                
+
             }
 
         }
